@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/solid';
 import { useDispatch } from 'react-redux';
 import { addToBasket } from '../slices/basketSlice';
@@ -10,11 +10,14 @@ const MIN_RATING = 1;
 
 function Product({ id, title, price, description, category, image }) {
   const dispatch = useDispatch();
-  const [rating] = useState(
-    Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
-  );  
-
-const [hasPrime] = useState(Math.random() < 0.5);
+  const [rating, setRating] = useState(1);
+  const [hasPrime, setHasPrime] = useState(true);
+  useEffect(() => {
+    setRating(
+      Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
+    );
+    setHasPrime(Math.random() < 0.5);
+  }, []);
 
 const addItemToBasket = () => {
   const product = {

@@ -6,7 +6,7 @@ import {
     ShoppingCartIcon,
 } from "@heroicons/react/outline"
 import { signIn, signOut, useSession } from 'next-auth/react'
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { selectItems } from '../slices/basketSlice';
 
@@ -41,7 +41,7 @@ function Header() {
                     </p>
                     <p className="font-extrabold md:text-sm">Account & Lists</p>
                 </div>
-                <div className="link">
+                <div onClick={() => router.push("/orders")} className="cursor-pointer link">
                     <p>Returns</p>
                     <p className="font-extrabold md:text-sm">& orders</p>
                 </div>
